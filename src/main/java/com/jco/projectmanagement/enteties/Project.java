@@ -1,9 +1,8 @@
 package com.jco.projectmanagement.enteties;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 public class Project {
@@ -14,6 +13,8 @@ public class Project {
     private String name;
     private String stage; //not started, completed, in progress
     private String description;
+    @OneToMany(mappedBy = "project")
+    private List<Employee> employees;
 
     public Project() {
     }
@@ -54,5 +55,13 @@ public class Project {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(List<Employee> employees) {
+        this.employees = employees;
     }
 }

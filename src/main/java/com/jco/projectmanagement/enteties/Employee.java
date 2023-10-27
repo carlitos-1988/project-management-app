@@ -1,9 +1,6 @@
 package com.jco.projectmanagement.enteties;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Employee {
@@ -15,6 +12,10 @@ public class Employee {
     private String firstName;
     private String lastName;
     private String email;
+    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST},
+    fetch = FetchType.LAZY)
+    @JoinColumn(name = "project_id")
+    private Project project;
 
     public Employee() {
     }
@@ -55,5 +56,13 @@ public class Employee {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
     }
 }

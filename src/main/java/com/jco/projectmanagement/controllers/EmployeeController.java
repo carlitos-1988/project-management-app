@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("employees")
 public class EmployeeController {
@@ -20,7 +22,14 @@ public class EmployeeController {
     public String displayEmployeeForm (Model m){
         Employee employee = new Employee();
         m.addAttribute("employee", employee);
-        return "new-employee.html";
+        return "employees1/new-employee.html";
+    }
+
+    @GetMapping("/show")
+    public String displayEmployees(Model m){
+        List<Employee> employeeList = employeeRepository.findAll();
+        m.addAttribute("employeeList", employeeList);
+        return "employees1/list-employees";
     }
 
     @PostMapping("/save")
@@ -28,4 +37,6 @@ public class EmployeeController {
         employeeRepository.save(employee);
         return "redirect:/employees/new";
     }
+
+
 }

@@ -28,7 +28,7 @@ public class HomeController {
         m.addAttribute("projectsList", projects);
         m.addAttribute("employeeList", employeeList);
 
-        return "home.html";
+        return "main/home.html";
     }
 //minor change
     //another minor change

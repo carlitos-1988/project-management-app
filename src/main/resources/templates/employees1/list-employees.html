@@ -1,10 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layouts :: header}"></head>
+
 <body>
-$END$
+<nav th:replace="~{layouts :: navbar}"></nav>
+
+
+
+<div class="container">
+    <a th:href="@{/employees/new}"
+       class="btn btn-primary btn-sm mb-3">
+        new Employee
+    </a>
+    <br>
+    <h4>Current Employees </h4>
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th> Employee First Name </th>
+            <th> Employee Last Name</th>
+            <th> Employee Email</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="employee: ${employeeList}">
+            <td th:text="${employee.firstName}"></td>
+            <td th:text="${employee.lastName}"></td>
+            <td th:text="${employee.email}"></td>
+        </tr>
+        </tbody>
+
+    </table>
+</div>
+
+
+
+
+
+<div th:replace="~{layouts :: scripts}"></div>
 </body>
 </html>
