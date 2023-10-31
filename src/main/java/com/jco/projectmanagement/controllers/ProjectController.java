@@ -1,6 +1,8 @@
 package com.jco.projectmanagement.controllers;
 
+import com.jco.projectmanagement.dao.EmployeeRepository;
 import com.jco.projectmanagement.dao.ProjectRepository;
+import com.jco.projectmanagement.enteties.Employee;
 import com.jco.projectmanagement.enteties.Project;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,11 +19,15 @@ public class ProjectController {
 
     @Autowired
     ProjectRepository projectRepository;
+    @Autowired
+    EmployeeRepository employeeRepository;
 
     @GetMapping("/new")
     public String displayProjectForm(Model m){
         Project aProject = new Project();
+        List<Employee> employeeList = employeeRepository.findAll();
         m.addAttribute("project", aProject );
+        m.addAttribute("allEmployees", employeeList );
         return "projects/new-project.html";
     }
 
@@ -36,6 +42,7 @@ public class ProjectController {
     public String createProject(Model m, Project project){
         //will handle saving to the database
         projectRepository.save(project);
-        return "redirect:/projects/new";
+
+        return "redirect:/projects/show";
     }
 }

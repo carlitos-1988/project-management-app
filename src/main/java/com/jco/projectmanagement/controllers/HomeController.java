@@ -30,6 +30,5 @@ public class HomeController {
 
         return "main/home.html";
     }
-//minor change
-    //another minor change
+
 }
