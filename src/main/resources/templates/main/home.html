@@ -19,15 +19,15 @@
         <tr>
             <th> Employee First Name </th>
             <th> Employee Last Name</th>
-            <th> Employee Email</th>
+            <th> Project Count</th>
 
         </tr>
         </thead>
         <tbody>
-        <tr th:each="employee: ${employeeList}">
-            <td th:text="${employee.firstName}"></td>
-            <td th:text="${employee.lastName}"></td>
-            <td th:text="${employee.email}"></td>
+        <tr th:each="employeeProjectCnt : ${employeeList}">
+            <td th:text="${employeeProjectCnt.firstName}"></td>
+            <td th:text="${employeeProjectCnt.lastName}"></td>
+            <td th:text="${employeeProjectCnt.projectCount}"></td>
         </tr>
         </tbody>
 
@@ -63,7 +63,9 @@
 
 <div class="col-md-6 container">
     <canvas id="myChart" height="50" width="50"></canvas>
-
+    <script>
+        var chartData = "[[${projectStatusCnt}]]"
+    </script>
 </div>
 
 <div th:replace="~{layouts :: scripts}"></div>
